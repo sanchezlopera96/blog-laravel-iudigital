@@ -1,26 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Welcome</title>
-        <!-- Fonts -->
-        <link rel="dns-prefetch" href="//fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-    
-        <!-- Scripts -->
-        @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-</head>
-<body>
-    <h2>Prueba laravel 10</h2>
-    <div class="card" style="width: 18rem;">
-        <img src="https://thumbs.dreamstime.com/z/un-simple-gato-lindo-con-carta-de-amor-elemento-dise%C3%B1o-para-tarjeta-saludo-d%C3%ADa-san-valent%C3%ADn-cumplea%C3%B1os-libro-colorear-167118677.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+@extends('layouts.app')
+
+@section('content')
+    <div id="slider" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            @foreach ($slides as $index => $slide)
+                <li data-target="#slider" data-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }}"></li>
+            @endforeach
+        </ol>
+        <div class="carousel-inner">
+            @foreach ($slides as $index => $slide)
+                <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                    <img src="{{ asset($slide['image']) }}" alt="{{ $slide['title'] }}">
+                    <div class="carousel-caption">
+                        <h3>{{ $slide['title'] }}</h3>
+                        <p>{{ $slide['content'] }}</p>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+        <a class="carousel-control-prev" href="#slider" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Anterior</span>
+        </a>
+        <a class="carousel-control-next" href="#slider" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Siguiente</span>
+        </a>
+    </div>
+
+    <div class="jumbotron">
+        <h1>Bienvenido a mi sitio web</h1>
+        <p>Esta es la página de inicio de mi sitio web. Aquí puedes agregar cualquier contenido que desees mostrar a tus
+            visitantes.</p>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Sección 1</h2>
+            <p>Contenido de la sección 1.</p>
+        </div>
+        <div class="col-md-6">
+            <h2>Sección 2</h2>
+            <p>Contenido de la sección 2.</p>
         </div>
     </div>
-</body>
-</html>
+
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Otra sección</h2>
+            <p>Contenido de otra sección.</p>
+        </div>
+    </div>
+@endsection
