@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\Category;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Category\StoreRequest;
-use App\Http\Requests\Category\PutRequest;
+use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
@@ -15,32 +12,38 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return response()->json(Category::paginate(10));
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreRequest $request)
+    public function store(Request $request)
     {
-        return response()->json(Category::create($request->validated()));
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(PutRequest $request, Category $category)
+    public function update(Request $request, string $id)
     {
-        $category->update($request->validated());
-        return response()->json($category);
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Category $category)
+    public function destroy(string $id)
     {
-        $category->delete();
-        return response()->json('ok');
+        //
     }
 }
